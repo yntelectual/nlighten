@@ -7,7 +7,10 @@ import { routing } from './app.routes';
 
 import { AppComponent } from './app.component';
 
-import { HomeModule } from './home/home.module';
+import {NlightenLayoutModule} from "./shared/layout/layout.module";
+import { AuthGuard } from "./shared/guards/auth-guard.guard";
+import { LoggedInGuard } from './shared/guards/logged-in-guard.guard';
+import { AuthService } from "./shared/auth/auth.service";
 
 @NgModule({
   declarations: [
@@ -18,10 +21,13 @@ import { HomeModule } from './home/home.module';
     FormsModule,
     HttpModule,
     routing,
-
-    HomeModule
+    NlightenLayoutModule,
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    LoggedInGuard,
+    AuthService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
